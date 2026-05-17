@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WeatherAI – Real-Time Global Weather</title>
+  <meta name="description" content="Get real-time weather information for major cities around the world, powered by AI insights." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="locked">
+  <!-- Password Gate -->
+  <div id="password-gate" class="password-gate">
+    <div class="gate-orbs">
+      <div class="gate-orb gate-orb-1"></div>
+      <div class="gate-orb gate-orb-2"></div>
+    </div>
+    <div class="gate-card">
+      <div class="gate-logo">
+        <span class="gate-logo-icon">🌍</span>
+        <span class="gate-logo-text">WeatherAI</span>
+      </div>
+      <h2 class="gate-title">Welcome Back</h2>
+      <p class="gate-sub">Enter your password to access real-time global weather</p>
+      <div class="gate-input-wrap" id="gate-input-wrap">
+        <span class="gate-lock-icon">🔒</span>
+        <input
+          type="password"
+          id="gate-password"
+          class="gate-input"
+          placeholder="Enter password…"
+          maxlength="32"
+          autocomplete="current-password"
+          aria-label="Password"
+        />
+        <button id="gate-btn" class="gate-btn" aria-label="Unlock">Unlock →</button>
+      </div>
+      <p id="gate-error" class="gate-error hidden">❌ Incorrect password. Try again.</p>
+    </div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">🌍</span>
+      <span class="logo-text">WeatherAI</span>
+    </div>
+    <div class="header-right">
+      <span class="live-badge">
+        <span class="pulse"></span> LIVE
+      </span>
+      <span id="current-time" class="current-time"></span>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Real-Time <span class="gradient-text">Global Weather</span></h1>
+    <p class="hero-sub">Powered by AI insights · Updated every minute</p>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <div class="search-box" id="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="city-search"
+          placeholder="Search any city worldwide…"
+          autocomplete="off"
+          aria-label="Search city"
+        />
+        <button id="search-btn" aria-label="Search">Search</button>
+      </div>
+      <div id="suggestions" class="suggestions hidden"></div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Featured City Card (large) -->
+    <section class="featured-section" id="featured-section">
+      <div id="featured-card" class="featured-card">
+        <div class="featured-loading">
+          <div class="spinner"></div>
+          <p>Loading weather…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Insight Bar -->
+    <div class="ai-insight-bar" id="ai-insight-bar">
+      <span class="ai-label">🤖 AI Insight</span>
+      <span id="ai-insight-text" class="ai-insight-text">Select a city to get AI-powered weather insights…</span>
+    </div>
+
+    <!-- World Cities Grid -->
+    <section class="cities-section">
+      <div class="section-header">
+        <h2 class="section-title">Major Cities Around the World</h2>
+        <div class="unit-toggle">
+          <button id="unit-c" class="unit-btn active">°C</button>
+          <button id="unit-f" class="unit-btn">°F</button>
+        </div>
+      </div>
+      <div class="cities-grid" id="cities-grid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value" id="stat-hottest">–</span>
+        <span class="stat-label">🔥 Hottest City</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-coldest">–</span>
+        <span class="stat-label">❄️ Coldest City</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-rainiest">–</span>
+        <span class="stat-label">🌧️ Most Humid</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-value" id="stat-windiest">–</span>
+        <span class="stat-label">💨 Windiest</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Data from <a href="https://open-meteo.com" target="_blank">Open-Meteo</a> · AI by Gemini · Made with ❤️</p>
+  </footer>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="modal hidden" role="dialog" aria-modal="true" aria-label="City weather details">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-content" id="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
